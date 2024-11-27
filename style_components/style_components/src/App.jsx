@@ -34,7 +34,9 @@ const BigTextBigBlueButton = styled(BigBlueButton)`
 `;
 
 const PropsButton = styled.button`
-  background-color: ${(props) => props.backgroundcolor || "white"};
+  background-color: ${(props) => props.backgroundColor || "white"};
+  color: ${(props) => props.textColor || "black"};
+  /*프롭스를 받는 함수 => 프롭스에 텍스트컬러가 내려왔다면 그 색상을 쓰고 아니라면 검은색을 써라*/
 `;
 
 //컴포넌트코드 안에서 스타일속성을 관리할 수 있게 되면 특정 컴포넌트의
@@ -55,7 +57,22 @@ function App() {
       <BlueButton>파란색버튼</BlueButton>
       <BigBlueButton>커다란 파란색 버튼</BigBlueButton>
       {/*<BigTextBigBlueButton>글자도 커다란 파란색 버튼 </BigTextBigBlueButton>*/}
-      <PropsButton>Props 버튼 </PropsButton>
+      <PropsButton backgroundColor="green" textColor="yellow">
+        Props 버튼
+      </PropsButton>
+      <PropsButton backgroundColor="yellow" textColor="green">
+        Props 버튼
+      </PropsButton>
+      {/*속성을 따로 설정안하면 위에 적용한 설정 그대로 적용 됨*/}
+      {/*styledcomponent에 리엑트컴포넌트에 프롭스 내려주듯이
+      값을 전달해 주고 그걸 작성한 styledcomponent코드 컴플릿리터럴 안에서
+      ${}표시를 사용해서 받아온 프롭스를 사용하는 식으로 작성*/}
+      {/*내려 받은 프롭스값을 받아서 바로 속성값으로 사용하거나 
+      내려온 프롭스 값이 없다면 기본값으로 설정해서 사용하거나 하는 식으로 사용할 수 있음*/}
+      {/*프롭스를 내려받아서 사용하게 만들면 하나의 컴포넌트를 만들었지만
+      다양하게 활용할 수 있음 */}
+      {/*bluebutton을 세종류 만들었는데 props를 받게 만들면 따로따로 만들 필요 없이
+      내려주는 프롭스 값에 따라서 다양한 디자인의 버튼을 만들 수 있음*/}
     </Container>
   );
 }
